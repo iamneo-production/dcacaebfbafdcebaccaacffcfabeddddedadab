@@ -1,11 +1,9 @@
+
 import { fireEvent, render, screen, waitFor, cleanup, queryByTestId, getByTestId, wait } from "@testing-library/react";
 import Search from "../components/Search/Search";
 import axios from 'axios';
-import fetchData from '../components/Search/utillity';
 
 jest.mock('axios');
-
-console.log(axios);
 
 describe('Search Component', () => {
 
@@ -29,14 +27,10 @@ describe('Search Component', () => {
         let flag = true;
         const searchname = ['R', 'Ring', 'Revengers', 'Robusted'];
         const searchLinks = ['www.google.com', 'www.yahoo.com', 'www.duckduckgo.com', 'www.brave.com']
-        console.log("Log ===", searchLinks);
 
         const suggestionList = await screen.findAllByTestId('suggestion');
 
         await suggestionList.forEach((suggestion, index) => {
-
-            // console.log(`test = ${suggestion.textContent} exp = ${searchname[index]} at ind = ${index}`);
-            // console.log(`test = ${suggestion.getAttribute('href')} exp = ${searchLinks[index]} at ind = ${index}`);
 
             expect(suggestion.textContent).toBe(searchname[index]);
             expect(suggestion.getAttribute('href')).toBe(searchLinks[index])
@@ -66,9 +60,6 @@ describe('Search Component', () => {
         let suggestionList = await screen.findAllByTestId('suggestion');
 
         await suggestionList.forEach((suggestion, index) => {
-
-            // console.log(`test = ${suggestion.textContent} exp = ${searchname[index]} at ind = ${index}`);
-            // console.log(`test = ${suggestion.getAttribute('href')} exp = ${searchLinks[index]} at ind = ${index}`);
 
             expect(suggestion.textContent).toBe(searchname[index]);
             expect(suggestion.getAttribute('href')).toBe(searchLinks[index])
